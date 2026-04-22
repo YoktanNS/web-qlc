@@ -2,7 +2,10 @@
 @section('title', 'Masuk')
 
 @section('content')
-<div class="min-vh-100 d-flex align-items-center justify-content-center py-5" style="background: radial-gradient(ellipse at 30% 50%, rgba(99,102,241,0.12) 0%, transparent 60%), radial-gradient(ellipse at 80% 20%, rgba(139,92,246,0.10) 0%, transparent 50%);">
+<div class="min-vh-100 d-flex align-items-center justify-content-center py-5"
+     style="background: radial-gradient(ellipse at 25% 50%, rgba(107,158,114,0.12) 0%, transparent 60%),
+                        radial-gradient(ellipse at 80% 20%, rgba(181,144,106,0.10) 0%, transparent 50%),
+                        var(--cream);">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-sm-10 col-md-7 col-lg-5 col-xl-4">
@@ -11,15 +14,15 @@
                 <div class="text-center mb-4 animate-fadeup">
                     <a href="{{ route('home') }}" class="text-decoration-none d-inline-flex align-items-center gap-2 mb-3">
                         <div class="d-flex align-items-center justify-content-center rounded-3"
-                             style="width:48px; height:48px; background:linear-gradient(135deg, #6366f1, #8b5cf6);">
-                            <i class="bi bi-brain text-white fs-5"></i>
+                             style="width:48px; height:48px; background:linear-gradient(135deg, var(--primary), var(--secondary)); box-shadow: 0 4px 16px rgba(107,158,114,0.35);">
+                            <i class="bi bi-emoji-dizzy text-white fs-5"></i>
                         </div>
-                        <span class="fw-bold fs-5" style="background:linear-gradient(135deg,#6366f1,#06b6d4); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;">
+                        <span class="fw-bold fs-5" style="background:linear-gradient(135deg, var(--primary-dark), var(--primary)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;">
                             QLC Detector
                         </span>
                     </a>
-                    <h1 class="h4 fw-bold mb-1" style="color:#f1f5f9;">Selamat Datang Kembali</h1>
-                    <p class="mb-0" style="color:#94a3b8; font-size:.92rem;">Masuk untuk melanjutkan perjalananmu</p>
+                    <h1 class="h4 fw-bold mb-1" style="color: var(--text-main);">Selamat Datang Kembali 👋</h1>
+                    <p class="mb-0" style="color: var(--text-muted); font-size:.92rem;">Masuk untuk melanjutkan perjalananmu</p>
                 </div>
 
                 {{-- Card --}}
@@ -44,7 +47,7 @@
                         {{-- Email --}}
                         <div class="mb-3">
                             <label for="email" class="form-label">
-                                <i class="bi bi-envelope me-1" style="color:#a5b4fc;"></i>Alamat Email
+                                <i class="bi bi-envelope me-1" style="color: var(--primary);"></i>Alamat Email
                             </label>
                             <input
                                 id="email"
@@ -63,10 +66,11 @@
                         <div class="mb-3">
                             <div class="d-flex justify-content-between align-items-center mb-1">
                                 <label for="password" class="form-label mb-0">
-                                    <i class="bi bi-lock me-1" style="color:#a5b4fc;"></i>Password
+                                    <i class="bi bi-lock me-1" style="color: var(--primary);"></i>Password
                                 </label>
                                 @if(Route::has('password.request'))
-                                    <a href="{{ route('password.request') }}" class="small text-decoration-none" style="color:#a5b4fc;">
+                                    <a href="{{ route('password.request') }}" class="small text-decoration-none fw-medium"
+                                       style="color: var(--primary-dark);">
                                         Lupa password?
                                     </a>
                                 @endif
@@ -83,7 +87,7 @@
                                 >
                                 <button type="button" class="btn position-absolute end-0 top-50 translate-middle-y pe-3 border-0 bg-transparent"
                                         onclick="togglePassword('password', this)" tabindex="-1">
-                                    <i class="bi bi-eye" style="color:#64748b;"></i>
+                                    <i class="bi bi-eye" style="color: var(--text-muted);"></i>
                                 </button>
                             </div>
                         </div>
@@ -92,7 +96,7 @@
                         <div class="mb-4">
                             <div class="form-check">
                                 <input id="remember_me" type="checkbox" class="form-check-input" name="remember"
-                                       style="background-color:rgba(255,255,255,0.08); border-color:rgba(255,255,255,0.2);">
+                                       style="border-color: var(--card-border); background-color: var(--cream);">
                                 <label for="remember_me" class="form-check-label small">Ingat saya di perangkat ini</label>
                             </div>
                         </div>
@@ -104,9 +108,9 @@
 
                         {{-- Divider --}}
                         <div class="d-flex align-items-center gap-2 mb-3">
-                            <hr class="flex-grow-1" style="border-color:rgba(255,255,255,0.1);">
-                            <span class="small" style="color:#475569;">atau</span>
-                            <hr class="flex-grow-1" style="border-color:rgba(255,255,255,0.1);">
+                            <hr class="flex-grow-1" style="border-color: var(--card-border);">
+                            <span class="small" style="color: var(--text-muted);">atau</span>
+                            <hr class="flex-grow-1" style="border-color: var(--card-border);">
                         </div>
 
                         {{-- Guest Mode --}}
@@ -115,9 +119,9 @@
                         </a>
 
                         {{-- Register Link --}}
-                        <p class="text-center mb-0 small" style="color:#94a3b8;">
+                        <p class="text-center mb-0 small" style="color: var(--text-muted);">
                             Belum punya akun?
-                            <a href="{{ route('register') }}" class="fw-semibold text-decoration-none" style="color:#a5b4fc;">
+                            <a href="{{ route('register') }}" class="fw-semibold text-decoration-none" style="color: var(--primary-dark);">
                                 Daftar sekarang
                             </a>
                         </p>
@@ -125,8 +129,8 @@
                 </div>
 
                 {{-- Note --}}
-                <p class="text-center small mt-4" style="color:#475569;">
-                    <i class="bi bi-shield-lock me-1"></i>
+                <p class="text-center small mt-4" style="color: var(--text-muted);">
+                    <i class="bi bi-shield-lock me-1" style="color: var(--primary);"></i>
                     Data kamu dilindungi dan tidak dibagikan ke pihak ketiga.
                 </p>
 
@@ -144,11 +148,11 @@ function togglePassword(id, btn) {
     if (input.type === 'password') {
         input.type = 'text';
         icon.className = 'bi bi-eye-slash';
-        icon.style.color = '#a5b4fc';
+        icon.style.color = 'var(--primary)';
     } else {
         input.type = 'password';
         icon.className = 'bi bi-eye';
-        icon.style.color = '#64748b';
+        icon.style.color = 'var(--text-muted)';
     }
 }
 </script>

@@ -10,13 +10,13 @@
             <div class="card-glass p-5 text-center animate-fadeup position-relative overflow-hidden">
 
                 {{-- Background Glow --}}
-                <div class="position-absolute top-0 start-0 w-100 h-100" style="background: radial-gradient(ellipse at 50% 0%, rgba({{ $level->code === 'severe' ? '239,68,68' : ($level->code === 'moderate' ? '245,158,11' : ($level->code === 'mild' ? '6,182,212' : '16,185,129')) }}, 0.08) 0%, transparent 70%); pointer-events:none;"></div>
+                <div class="position-absolute top-0 start-0 w-100 h-100" style="background: radial-gradient(ellipse at 50% 0%, rgba({{ $level->code === 'severe' ? '168,58,58' : ($level->code === 'moderate' ? '168,122,40' : ($level->code === 'mild' ? '181,144,106' : '78,143,85')) }}, 0.10) 0%, transparent 70%); pointer-events:none;"></div>
 
                 <div class="position-relative">
                     {{-- Icon Level --}}
                     <div class="mb-3">
                         <div class="d-inline-flex align-items-center justify-content-center rounded-4 mb-3"
-                             style="width:80px; height:80px; background: rgba({{ $level->code === 'severe' ? '239,68,68' : ($level->code === 'moderate' ? '245,158,11' : ($level->code === 'mild' ? '6,182,212' : '16,185,129')) }}, 0.15);">
+                             style="width:80px; height:80px; background: rgba({{ $level->code === 'severe' ? '168,58,58' : ($level->code === 'moderate' ? '168,122,40' : ($level->code === 'mild' ? '181,144,106' : '78,143,85')) }}, 0.13);">
                             <i class="{{ $level->icon ?? 'bi-circle' }} fs-2" style="color: var(--{{ $level->color_class === 'success' ? 'success' : ($level->color_class === 'warning' ? 'warning' : ($level->color_class === 'danger' ? 'danger' : 'accent')) }});"></i>
                         </div>
                     </div>
@@ -50,7 +50,7 @@
             {{-- Skor per Domain --}}
             <div class="card-glass p-4 mb-4 animate-fadeup" style="animation-delay:.1s">
                 <h5 class="fw-bold mb-4">
-                    <i class="bi bi-bar-chart me-2" style="color:#a5b4fc;"></i>Skor per Domain
+                    <i class="bi bi-bar-chart me-2" style="color:#a8c5aa;"></i>Skor per Domain
                 </h5>
                 @foreach($domainScores as $code => $data)
                     @php
@@ -60,19 +60,19 @@
                     <div class="mb-3">
                         <div class="d-flex justify-content-between align-items-center mb-1">
                             <div>
-                                <span class="badge me-2" style="background:rgba(99,102,241,0.15); color:#a5b4fc; font-size:.7rem;">{{ $code }}</span>
+                                <span class="badge me-2" style="background:rgba(122,158,126,0.15); color:#a8c5aa; font-size:.7rem;">{{ $code }}</span>
                                 <span class="small fw-medium">{{ $data['name'] }}</span>
                             </div>
                             <span class="small fw-bold" style="color:{{ $barColor }};">{{ $data['score'] }}/{{ $data['max'] }}</span>
                         </div>
-                        <div class="progress" style="height:8px; background:rgba(255,255,255,0.08); border-radius:99px;">
+                        <div class="progress" style="height:8px; background:rgba(200,184,154,0.1); border-radius:99px;">
                             <div class="progress-bar" style="width:{{ $pct }}%; background:{{ $barColor }}; border-radius:99px; transition:width 1s ease;"></div>
                         </div>
                     </div>
                 @endforeach
                 <div class="mt-3 pt-3 border-top border-secondary">
                     <small class="text-muted">
-                        <i class="bi bi-pin-angle me-1" style="color:#fcd34d;"></i>
+                        <i class="bi bi-pin-angle me-1" style="color:#c9a34e;"></i>
                         Domain Dominan: <strong class="text-light">{{ $result->dominant_domain }}</strong>
                     </small>
                 </div>
@@ -82,12 +82,12 @@
             @if(count($fcRulesFired) > 0)
                 <div class="card-glass p-4 mb-4 animate-fadeup" style="animation-delay:.2s">
                     <h5 class="fw-bold mb-3">
-                        <i class="bi bi-cpu me-2" style="color:#67e8f9;"></i>Proses Forward Chaining
+                        <i class="bi bi-cpu me-2" style="color:#c8b89a;"></i>Proses Forward Chaining
                     </h5>
                     <p class="text-muted small mb-3">Rule-rule berikut terpenuhi dan mempengaruhi penentuan level akhirmu:</p>
                     @foreach($fcRulesFired as $ruleCode)
-                        <div class="d-flex align-items-center gap-2 mb-2 p-2 rounded-3" style="background:rgba(6,182,212,0.08); border:1px solid rgba(6,182,212,0.2);">
-                            <i class="bi bi-check-lg" style="color:#67e8f9;"></i>
+                        <div class="d-flex align-items-center gap-2 mb-2 p-2 rounded-3" style="background:rgba(122,158,126,0.08); border:1px solid rgba(122,158,126,0.2);">
+                            <i class="bi bi-check-lg" style="color:#a8c5aa;"></i>
                             <span class="small"><strong>{{ $ruleCode }}</strong></span>
                         </div>
                     @endforeach
@@ -115,7 +115,7 @@
             @if($level->allow_action_plan && $recommendations->count() > 0)
                 <div class="animate-fadeup" style="animation-delay:.3s">
                     <h4 class="fw-bold mb-1">
-                        <i class="bi bi-bar-chart-steps me-2" style="color:#a5b4fc;"></i>
+                        <i class="bi bi-bar-chart-steps me-2" style="color:#a8c5aa;"></i>
                         Rekomendasi Action Plan
                     </h4>
                     <p class="text-muted small mb-4">Diranking menggunakan metode SAW berdasarkan profil gejalamu</p>
@@ -123,15 +123,15 @@
                     @foreach($recommendations->take(5) as $rec)
                         @php
                             $ap = $rec->actionPlan;
-                            $catColors = ['cognitive'=>'#6366f1','journaling'=>'#8b5cf6','behavioral'=>'#06b6d4','mindfulness'=>'#10b981','social'=>'#f59e0b'];
+                            $catColors = ['cognitive'=>'#7a9e7e','journaling'=>'#9dba7f','behavioral'=>'#c8b89a','mindfulness'=>'#6eaa6e','social'=>'#c9a34e'];
                             $color = $catColors[$ap->category] ?? '#6366f1';
                         @endphp
                         <div class="card-glass p-4 mb-3 animate-fadeup" style="animation-delay:{{ .3 + $loop->index * 0.07 }}s">
                             <div class="d-flex gap-3">
                                 {{-- Rank --}}
                                 <div class="flex-shrink-0">
-                                    <div class="d-flex align-items-center justify-content-center rounded-circle fw-bold"
-                                         style="width:44px; height:44px; background: rgba({{ $rec->rank === 1 ? '245,158,11' : ($rec->rank === 2 ? '148,163,184' : '99,102,241') }}, 0.15); color: {{ $rec->rank === 1 ? '#fcd34d' : ($rec->rank === 2 ? '#94a3b8' : '#a5b4fc') }}; font-size:1.1rem;">
+                                     <div class="d-flex align-items-center justify-content-center rounded-circle fw-bold"
+                                          style="width:44px; height:44px; background: rgba({{ $rec->rank === 1 ? '168,122,40' : ($rec->rank === 2 ? '90,90,90' : '107,158,114') }}, 0.14); color: {{ $rec->rank === 1 ? '#a87a28' : ($rec->rank === 2 ? '#5c5648' : '#4a7a52') }}; font-size:1.1rem;">
                                         @if($rec->rank === 1) <i class="bi bi-trophy"></i>
                                         @else {{ $rec->rank }}
                                         @endif
@@ -154,14 +154,14 @@
                                         <span class="small" style="color:{{ $color }};">
                                             Skor SAW: <strong>{{ number_format($rec->saw_final_score, 4) }}</strong>
                                         </span>
-                                        <button class="btn btn-sm rounded-3" style="background:rgba(99,102,241,0.15); color:#a5b4fc; font-size:.78rem;" type="button" data-bs-toggle="collapse" data-bs-target="#ap{{ $ap->id }}">
+                                        <button class="btn btn-sm rounded-3" style="background:rgba(122,158,126,0.15); color:#a8c5aa; font-size:.78rem;" type="button" data-bs-toggle="collapse" data-bs-target="#ap{{ $ap->id }}">
                                             <i class="bi bi-arrows-expand me-1"></i>Selengkapnya
                                         </button>
                                     </div>
 
                                     {{-- Full Detail Collapse --}}
                                     <div class="collapse mt-3" id="ap{{ $ap->id }}">
-                                        <div class="p-3 rounded-3" style="background:rgba(255,255,255,0.04);">
+                                        <div class="p-3 rounded-3" style="background:var(--cream-2);">
                                             <p class="small text-light mb-2" style="line-height:1.6;">{{ $ap->description }}</p>
                                             @if($ap->how_to)
                                                 <h6 class="small fw-bold text-muted mt-3 mb-1"><i class="bi bi-check2-square me-1"></i>Cara Melakukan:</h6>
@@ -175,28 +175,25 @@
                     @endforeach
 
                     {{-- SAW Info --}}
-                    <div class="p-3 rounded-3 mt-2" style="background:rgba(6,182,212,0.06); border:1px solid rgba(6,182,212,0.15);">
+                    <div class="p-3 rounded-3 mt-2" style="background:rgba(122,158,126,0.06); border:1px solid rgba(122,158,126,0.15);">
                         <small class="text-muted">
-                            <i class="bi bi-info-circle me-1" style="color:#67e8f9;"></i>
-                            Ranking dihasilkan oleh metode <strong class="text-info">Simple Additive Weighting (SAW)</strong> berdasarkan 4 kriteria:
+                            <i class="bi bi-info-circle me-1" style="color:#c8b89a;"></i>
+                            Ranking dihasilkan oleh metode <strong style="color:#a8c5aa;">Simple Additive Weighting (SAW)</strong> berdasarkan 4 kriteria:
                             Relevansi Gejala (35%), Kemudahan (25%), Efektivitas Literatur (25%), Kesesuaian Usia (15%).
                         </small>
                     </div>
                 </div>
 
             @elseif($level->code === 'severe')
-                <div class="card-glass p-5 text-center animate-fadeup" style="animation-delay:.3s; border-color:rgba(239,68,68,0.3);">
-                    <i class="bi bi-heart-pulse fs-1 mb-3 d-block" style="color:#fca5a5;"></i>
+                <div class="card-glass p-5 text-center animate-fadeup" style="animation-delay:.3s; border-color:rgba(168,58,58,0.25); background: rgba(168,58,58,0.04);">
+                    <i class="bi bi-heart-pulse fs-1 mb-3 d-block" style="color:var(--danger);"></i>
                     <h5 class="fw-bold mb-3">Segera Cari Bantuan Profesional</h5>
                     <p class="text-muted mb-4">
                         Tingkat QLC yang kamu alami memerlukan pendampingan dari psikolog atau konselor profesional. Ini adalah langkah paling tepat dan terkuat yang bisa kamu ambil saat ini.
                     </p>
                     <div class="d-flex flex-wrap gap-3 justify-content-center">
                         <a href="https://www.halodoc.com/artikel/psikolog" target="_blank" class="btn btn-outline-danger">
-                            <i class="bi bi-telephone me-2"></i>Cari Psikolog Online
-                        </a>
-                        <a href="tel:119" class="btn" style="background:rgba(239,68,68,0.15); color:#fca5a5; border:1px solid rgba(239,68,68,0.3);">
-                            <i class="bi bi-telephone-fill me-2"></i>Hotline Kesehatan Jiwa: 119 ext 8
+                            Cari Psikolog di Halo Doc
                         </a>
                     </div>
                 </div>

@@ -10,7 +10,7 @@
                 {{-- Icon --}}
                 <div class="mb-4">
                     <div class="d-inline-flex align-items-center justify-content-center rounded-4" style="width:88px; height:88px; background: linear-gradient(135deg, rgba(99,102,241,0.25), rgba(139,92,246,0.25));">
-                        <i class="bi bi-brain fs-1" style="color:#a5b4fc;"></i>
+                        <i class="bi bi-emoji-dizzy fs-1" style="color:#a5b4fc;"></i>
                     </div>
                 </div>
 
